@@ -1,10 +1,10 @@
-import React from 'react'
-import LudoPage from './Ludo/LudoPage'
+import DiceRoller from "./Ludo/Dice"
+
 
 function App() {
   return (
     <div>
-      <LudoPage/>
+      <DiceRoller/>
     </div>
   )
 }
