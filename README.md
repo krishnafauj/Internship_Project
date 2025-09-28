@@ -1,5 +1,6 @@
 Ludo Game
 A modern React-based implementation of the classic Ludo board game with smooth animations and intuitive gameplay.
+<img width="2117" height="1659" alt="image" src="https://github.com/user-attachments/assets/d73f18f1-b02e-4dcd-9b14-754d3546a36c" />
 
 🎮 Features
 4 Player Game: Play with Green, Red, Blue, and Yellow teams
