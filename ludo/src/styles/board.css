@@ -1,0 +1,67 @@
+/* board.css */
+
+/* General Board Styles */
+.board {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    gap: 2px;
+    width: 600px;
+    height: 600px;
+    border: 2px solid #333;
+    margin: 20px auto;
+    position: relative;
+  }
+  
+  /* Base Area Styles */
+  .base {
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .base.red { background-color: #ff4d4d; }
+  .base.green { background-color: #4dff4d; }
+  .base.yellow { background-color: #ffcc00; }
+  .base.blue { background-color: #3399ff; }
+  
+  /* Track Area Styles */
+  .track {
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .track.active {
+    background-color: #b3b3b3;
+  }
+  
+  /* Home Row Placeholder */
+  .home-row {
+    background-color: #ffffff;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Pawn Styles */
+  .pawn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    transition: transform 0.3s ease;
+  }
+  
+  .pawn.red { background-color: #ff0000; }
+  .pawn.green { background-color: #00ff00; }
+  .pawn.yellow { background-color: #ffff00; }
+  .pawn.blue { background-color: #0000ff; }
+  

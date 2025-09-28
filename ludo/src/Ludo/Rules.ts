@@ -26,9 +26,6 @@ export interface Pawn {
   
   // Check for collision and cut pawn
   const handleCut = (gameData: GameData, movingPlayer: Player, pawnPos: number) => {
-    // If the position is safe, no cut
-    if (SAFE_POSITIONS.includes(pawnPos)) return;
-  
     gameData.players.forEach(player => {
       if (player.id !== movingPlayer.id) {
         player.pawns.forEach(p => {
@@ -47,7 +44,6 @@ export interface Pawn {
       }
     });
   };
-  
   
   // Get eligible pawns
   export const getEligiblePawns = (player: Player, dice: number, gameData: GameData): number[] => {
