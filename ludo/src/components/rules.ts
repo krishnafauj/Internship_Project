@@ -1,7 +1,7 @@
-// Rules.ts
+// src/Rules.ts
 export interface Pawn {
     id: number;
-    position: number; // -1 = base/home, 0-51 = board, 100+ = home stretch
+    position: number; // -1 = base/home, 0-51 = board, 100+ = home column
     isHome: boolean;
     stepsMoved: number;
   }
@@ -18,25 +18,35 @@ export interface Pawn {
     players: Player[];
     currentTurn: number;
   }
-  const SAFE_POSITIONS: number[] = [0, 8, 13, 21, 26, 34, 39, 47]; 
+  
+  export const SAFE_POSITIONS: number[] = [0, 8, 13, 21, 26, 34, 39, 47];
+  
   export const rollDice = (): number => Math.floor(Math.random() * 6) + 1;
   
-  const startingPositions: Record<string, number> = { red: 0, green: 13, yellow: 26, blue: 39 };
-  const homeEntry: Record<string, number> = { red: 51, green: 12, yellow: 25, blue: 38 };
+  export const startingPositions: Record<string, number> = {
+    green: 9,
+    red: 21,
+    blue: 34,
+    yellow: 47,
+  };
   
-  // Check for collision and cut pawn
-  const handleCut = (gameData: GameData, movingPlayer: Player, pawnPos: number) => {
+  export const homeEntry: Record<string, number> = {
+    green: 8,
+    red: 20,
+    blue: 33,
+    yellow: 46,
+  };
+  
+  // Handle collision and cutting pawn
+  export const handleCut = (gameData: GameData, movingPlayer: Player, pawnPos: number) => {
     gameData.players.forEach(player => {
       if (player.id !== movingPlayer.id) {
         player.pawns.forEach(p => {
           if (!p.isHome && p.position === pawnPos) {
-            // Cut happens
             const lostPoints = p.stepsMoved || 0;
             p.position = -1;
             p.stepsMoved = 0;
             p.isHome = false;
-  
-            // Update scores
             player.score -= lostPoints;
             movingPlayer.score += lostPoints;
           }
@@ -45,14 +55,13 @@ export interface Pawn {
     });
   };
   
-  // Get eligible pawns
+  // Get eligible pawns for current dice roll
   export const getEligiblePawns = (player: Player, dice: number, gameData: GameData): number[] => {
     return player.pawns
       .map((pawn, idx) => ({ pawn, idx }))
-      .filter(({ pawn, idx }) => {
+      .filter(({ pawn }) => {
         if (pawn.isHome) return false;
         if (pawn.position === -1) return dice === 6;
-  
         const stepsToHome = (homeEntry[player.color.toLowerCase()] - pawn.position + 52) % 52;
         return dice <= stepsToHome;
       })
@@ -63,7 +72,6 @@ export interface Pawn {
   export const movePawn = (gameData: GameData, playerId: number, pawnIndex: number, dice: number): GameData => {
     const player = gameData.players[playerId];
     const pawn = player.pawns[pawnIndex];
-  
     if (pawn.isHome) return gameData;
   
     let pawnOpened = false;
@@ -79,23 +87,20 @@ export interface Pawn {
         pawn.position = 100 + pawn.id;
         pawn.isHome = true;
         pawn.stepsMoved += dice;
-        player.score += 50; // bonus for reaching home
+        player.score += 50;
       } else {
         pawn.position = (pawn.position + dice) % 52;
         pawn.stepsMoved += dice;
       }
     }
   
-    // Handle cutting other pawns
     handleCut(gameData, player, pawn.position);
   
-    // Update score (sum of stepsMoved + bonuses)
     player.score = player.pawns.reduce((sum, p) => sum + (p.stepsMoved || 0) + (p.isHome ? 50 : 0), 0);
-  
     return gameData;
   };
   
-  // Next turn logic
+  // Next turn
   export const nextTurn = (gameData: GameData, dice: number, pawnOpened?: boolean): GameData => {
     if (dice === 6 && pawnOpened) return gameData;
     gameData.currentTurn = (gameData.currentTurn + 1) % gameData.players.length;
