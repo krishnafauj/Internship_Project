@@ -1,10 +1,10 @@
-import DiceRoller from "./Ludo/Dice"
+import LudoPage from "./Ludo/LudoPage"
 
 
 function App() {
   return (
     <div>
-      <DiceRoller/>
+      <LudoPage/>
     </div>
   )
 }

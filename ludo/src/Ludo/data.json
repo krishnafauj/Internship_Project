@@ -1,52 +1,27 @@
 {
     "players": [
-      {
-        "id": 1,
-        "name": "Player 1",
-        "color": "red",
-        "score": 0,
-        "pawns": [-1, -1, -1, -1]
-      },
-      {
-        "id": 2,
-        "name": "Player 2",
-        "color": "green",
-        "score": 0,
-        "pawns": [-1, -1, -1, -1]
-      },
-      {
-        "id": 3,
-        "name": "Player 3",
-        "color": "yellow",
-        "score": 0,
-        "pawns": [-1, -1, -1, -1]
-      },
-      {
-        "id": 4,
-        "name": "Player 4",
-        "color": "blue",
-        "score": 0,
-        "pawns": [-1, -1, -1, -1]
-      }
+      { "id": 0, "name": "Red", "color": "red", "pawns": [-1, -1, -1, -1], "score": 0 },
+      { "id": 1, "name": "Green", "color": "green", "pawns": [-1, -1, -1, -1], "score": 0 },
+      { "id": 2, "name": "Yellow", "color": "yellow", "pawns": [-1, -1, -1, -1], "score": 0 },
+      { "id": 3, "name": "Blue", "color": "blue", "pawns": [-1, -1, -1, -1], "score": 0 }
     ],
     "STARTING_POSITIONS": {
-      "red": 1,
-      "green": 14,
-      "yellow": 27,
-      "blue": 40
+      "red": 0,
+      "green": 13,
+      "yellow": 26,
+      "blue": 39
     },
     "HOME_ENTRY_POSITIONS": {
-      "red": 51,
-      "green": 12,
-      "yellow": 25,
-      "blue": 38
+      "red": 50,
+      "green": 11,
+      "yellow": 24,
+      "blue": 37
     },
     "PAWN_HOME_POSITIONS": {
-      "red": [100, 101, 102, 103],
-      "green": [110, 111, 112, 113],
-      "yellow": [120, 121, 122, 123],
-      "blue": [130, 131, 132, 133]
-    },
-    "SAFE_POSITIONS": [1, 9, 14, 22, 27, 35, 40, 48]
+      "red": 100,
+      "green": 110,
+      "yellow": 120,
+      "blue": 130
+    }
   }
   
