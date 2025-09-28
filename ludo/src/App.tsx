@@ -427,7 +427,7 @@ const DiceRoller: React.FC<{ currentPlayer: Player; gameData: GameData; updateGa
           width: 60, 
           height: 60, 
           border: "3px solid black", 
-          display: "flex", 
+          display: "flex",
           color:"black",
           justifyContent: "center", 
           alignItems: "center", 
@@ -463,7 +463,7 @@ const DiceRoller: React.FC<{ currentPlayer: Player; gameData: GameData; updateGa
   );
 };
 
-// Fixed clockwise position mapping
+// Fixed clockwise position ma
 const getPositionMapping = () => {
   const mapping: Record<number, { section: string; row: number; col: number }> = {};
 
